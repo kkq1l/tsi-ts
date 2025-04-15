@@ -1,6 +1,11 @@
 import React from "react";
 
-export const Text = (props) => {
+interface TextProps {
+  color: 'sssss' | 'succes' | 'error'; 
+  text: string; 
+}
+
+export const Text: React.FC<TextProps> = (props) => {
   const { color, text} = props;
   
 

@@ -10,6 +10,7 @@ const Header = () =>{
         <a href="/About" className="text-gray-800 hover:text-blue-500 transition duration-300">About</a>
         <a href="/Contacts" className="text-gray-800 hover:text-blue-500 transition duration-300">Contacts</a>
         <a href="/products" className="text-gray-800 hover:text-blue-500 transition duration-300">Продукты</a>
+        <a href="/message" className="text-gray-800 hover:text-blue-500 transition duration-300">Message</a>
         </nav>
     </div>
 }

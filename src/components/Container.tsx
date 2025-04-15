@@ -1,14 +1,9 @@
-import { Component } from "react";
+import React, { ReactNode } from 'react'
 
-export default class Home extends Component{
-render(){
-    return (
-        <Container>
-            <div className="flex gap-4">
-
-            </div>
-        </Container>
-    )
+const Container = ({children}:{children:ReactNode}) => {
+  return (
+    <div className=''>{children}</div>
+  )
 }
 
-}
+export default Container

@@ -1,7 +1,16 @@
 import React from "react";
 
-export const Input = (props) => {
-  const { size, typesq, title,length,ronChange } = props;
+interface InputProps {
+  size?: 'full' | 'medium' | 'short';
+  typesq: 'succes' | 'error' | 'normal'; 
+  title: string; 
+  value: string;
+  length: 'full' | 'medium' | 'short'; 
+  ronChange: (event: React.ChangeEvent<HTMLInputElement>) => void; 
+}
+
+export const Input: React.FC<InputProps> = (props) => {
+  const { value,size, typesq, title,length,ronChange } = props;
   
   const defaultClass =
     "mb-4 bg-sky-200 flex items-center h-[40px] px-4 py-2 rounded-lg flex items-center rounded-2 h-[40px] px-4 py-2 outline-hidden";
@@ -10,6 +19,7 @@ export const Input = (props) => {
     types: {
         succes: "text-green-800 border-2 border-green-500 ",
         error: "text-red-800 border-2 border-red-900",
+        normal: ""
       },
       
     lengths: {
@@ -20,7 +30,8 @@ export const Input = (props) => {
   };
   return (
     <>
-    <input className={defaultClass+" "+classes.types[typesq]+" "+classes.lengths[length]} placeholder={title} onChange={ronChange} type="text"/>
+    <input 
+      className={defaultClass+" "+  classes.types[typesq]+" "+classes.lengths[length]} placeholder={title} onChange={ronChange} type="text"/>
     </>
   );
 };

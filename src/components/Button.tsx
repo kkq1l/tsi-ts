@@ -1,6 +1,13 @@
 import React from "react";
 
-export const Button = (props) => {
+interface ButtonProps {
+  size: 'small' | 'medium' | 'large'; 
+  color: 'primary' | 'secondary' | 'succes'; 
+  title: string; 
+  ronClick: () => void;
+}
+
+export const Button: React.FC<ButtonProps> = (props) => {
   const { size, color, title, ronClick } = props;
   // класс по умолчанию
   const defaultClass =
