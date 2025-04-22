@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
+import axios from 'axios';
 
 interface IProduct {
   title: string;
   description: string;
   price: number;
 }
+
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -22,18 +24,29 @@ const Products: React.FC = () => {
       alert("Пожалуйста, введите корректную цену.");
       return;
     }
-
+    
     const newProduct: IProduct = {
       title,
       description,
       price: priceNumber,
     };
+    // const response = await fetch("http://localhost:5000/api/data");
+    let response = fetch('http://localhost:5000/data', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json; charset=utf-8'},
+      body: JSON.stringify(newProduct)
+    })
+    .then(response => response.json())
+    .catch(error => console.log(error));
+    response;
 
-    setProducts([...products, newProduct]);
     setTitle('');
     setDescription('');
     setPrice('');
     setIsModalOpen(false);
+return;
+
+    setProducts([...products, newProduct]);
   };
 
   return (
