@@ -26,6 +26,11 @@ app.get('/api/data', (req, res)=> {
     res.json({message: "Hello world!", title: "ggwp"});
 });
 
+
+app.get('/api/getdata', (req, res)=> {
+  res.json(dataStore);
+});
+
 app.post('/api/test/', (req, res)=>{
   res.send('Got a POST request')
 });

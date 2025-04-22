@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import axios from 'axios';
@@ -17,7 +17,19 @@ const Products: React.FC = () => {
   const [description, setDescription] = useState<string>('');
   const [price, setPrice] = useState<string>('');
 
-  const handleAddProduct = () => {
+          const fetchData = async () => {
+            try {
+              const response = await fetch("http://localhost:5000/api/getdata");
+              const result = await response.json();
+              setProducts(result);
+            } catch (error) {
+              console.error("Error fetching data:", error);
+            }
+          };
+  
+
+          fetchData();
+   const handleAddProduct = () => {
     const priceNumber = parseFloat(price);
     
     if (isNaN(priceNumber)) {
@@ -46,8 +58,9 @@ const Products: React.FC = () => {
     setIsModalOpen(false);
 return;
 
-    setProducts([...products, newProduct]);
+    setProducts  ([...products, newProduct]);
   };
+  
 
   return (
     <div className="p-4">
