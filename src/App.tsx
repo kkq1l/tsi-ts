@@ -12,12 +12,15 @@ import Soglashenie from './pages/Soglashenie';
 import Politika from './pages/Politika';
 import Products from './pages/Products';
 import Message from './pages/Message';
-
+import Auth from './pages/Auth';
+const env = await import.meta.env;
+export const version = (env.TEST);
 
 function App() {
 
   return (
     <>
+    version
     <Header/>
     <BrowserRouter>
       <Routes>
@@ -29,6 +32,7 @@ function App() {
         //Route footer
         <Route path = "/soglashenie" element = {<Soglashenie />}></Route>
         <Route path = "/politika" element = {<Politika />}></Route>
+        <Route path = "/auth" element = {<Auth />}></Route>
       </Routes>      
       </BrowserRouter>
       

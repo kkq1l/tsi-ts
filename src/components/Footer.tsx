@@ -13,9 +13,14 @@ const footer = () =>{
             </div>
             <div className="columns-[30vw]">
             <h2 className="uppercase font-bold">О нас</h2>
+            <nav>
+            <ul>+7 (999) 999 99 99</ul>
+            <ul>pochtadlyasvazi@mail.ru</ul>
+            <ul>WA</ul>
+            </nav>
             </div>
             <div className="columns-[30vw]">c</div>
-            <img src="ss"/>
+            <img src="./public/logo.png" className="h-12"/>
         </div>
         </>
     )

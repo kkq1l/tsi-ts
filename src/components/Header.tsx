@@ -12,6 +12,10 @@ const Header = () =>{
         <a href="/products" className="text-gray-800 hover:text-blue-500 transition duration-300">Продукты</a>
         <a href="/message" className="text-gray-800 hover:text-blue-500 transition duration-300">Message</a>
         </nav>
+
+        <nav className="flex space-x-6">
+        <a href="/auth" className="text-gray-800 hover:text-blue-500 transition duration-300">Авторизация</a>
+        </nav>
     </div>
 }
 
