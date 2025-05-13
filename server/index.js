@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(bodyParser.json()); 
 // Массив для хранения данных
 let dataStore = [];
+let userList = [];
 
 
 // Обработка POST-запросов
@@ -20,6 +21,20 @@ app.post('/data', (req, res) => {
   dataStore.push(newData); // Сохраняем данные в массив
   console.log(dataStore)
   res.status(201).json(newData); // Отправляем ответ с новыми данными
+});
+
+app.post('/registr', (req, res) => {
+  const newData = req.body;
+  console.log(newData.login);
+  if (userList.login.includes(newData.login))
+  {
+    console.log(newData.login+" данный логин уже имеется в списке");
+    res.send('error');
+    return;
+  }
+  console.log(newData);
+  userList.push(newData); // Сохраняем данные в массив
+  console.log(dataStore)
 });
 
 app.get('/api/data', (req, res)=> {

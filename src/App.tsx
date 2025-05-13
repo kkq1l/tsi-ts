@@ -20,7 +20,6 @@ function App() {
 
   return (
     <>
-    version
     <Header/>
     <BrowserRouter>
       <Routes>
