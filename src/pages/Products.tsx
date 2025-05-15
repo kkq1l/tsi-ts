@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
-import axios from "axios";
 
 interface IProduct {
   title: string;

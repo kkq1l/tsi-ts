@@ -1,9 +1,7 @@
-import React from "react";
-
 interface ButtonProps {
-  size: 'small' | 'medium' | 'large'; 
-  color: 'primary' | 'secondary' | 'succes'; 
-  title: string; 
+  size: "small" | "medium" | "large";
+  color: "primary" | "secondary" | "succes";
+  title: string;
   ronClick: () => void;
 }
 
@@ -37,10 +35,16 @@ export const Button: React.FC<ButtonProps> = (props) => {
   return (
     <div
       className={
-        defaultClass + " " + classes.sizes[size] + " " + classes.colors[color].button
+        defaultClass +
+        " " +
+        classes.sizes[size] +
+        " " +
+        classes.colors[color].button
       }
     >
-      <button className={classes.colors[color].text} onClick={ronClick}>{title}</button>
+      <button className={classes.colors[color].text} onClick={ronClick}>
+        {title}
+      </button>
     </div>
   );
 };

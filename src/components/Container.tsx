@@ -1,9 +1,7 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from "react";
 
-const Container = ({children}:{children:ReactNode}) => {
-  return (
-    <div className=''>{children}</div>
-  )
-}
+const Container = ({ children }: { children: ReactNode }) => {
+  return <div className="">{children}</div>;
+};
 
-export default Container
+export default Container;

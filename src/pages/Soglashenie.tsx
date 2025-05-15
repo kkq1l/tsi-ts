@@ -1,10 +1,5 @@
-import React from 'react';
+const Soglashenie = () => {
+  return <div>Soglashenie</div>;
+};
 
-const Soglashenie = () =>{    
-    return <div>
-        Soglashenie
-    </div>
-    
-}
-
-export default Soglashenie
+export default Soglashenie;

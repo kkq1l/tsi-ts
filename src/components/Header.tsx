@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Input } from "./Input";
 import { Button } from "./Button";
-import { useNavigate } from "react-router-dom";
 interface IUser {
   login: string;
   password: string;
@@ -12,7 +11,7 @@ const Header = () => {
   const [login, setLogin] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [auth, setAuth] = useState(false);
-
+  console.log(auth);
   const userAuth: IUser = {
     login,
     password,
