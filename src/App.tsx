@@ -17,8 +17,6 @@ import Registration from "./pages/Registration";
 import Profile from "./pages/Profile";
 import E403 from "./pages/errors/E403";
 import E404 from "./pages/errors/E404";
-const env = await import.meta.env;
-export const version = env.TEST;
 
 function App() {
   const [authorized, setAuhorized] = useState(false);
