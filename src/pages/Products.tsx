@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from '../components/Button';
-import { Input } from '../components/Input';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Button } from "../components/Button";
+import { Input } from "../components/Input";
+import axios from "axios";
 
 interface IProduct {
   title: string;
@@ -9,64 +9,86 @@ interface IProduct {
   price: number;
 }
 
-
 const Products: React.FC = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [price, setPrice] = useState<string>('');
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
 
-          const fetchData = async () => {
-            try {
-              const response = await fetch("http://localhost:5000/api/getdata");
-              const result = await response.json();
-              setProducts(result);
-            } catch (error) {
-              console.error("Error fetching data:", error);
-            }
-          };
-  
+  const [authorized, setAuhorized] = useState(false);
+  useEffect(() => {
+    const tryData = async () => {
+      const checkSession = await fetch("http://localhost:5000/profile", {
+        credentials: "include",
+      });
+      if (checkSession.ok) {
+        setAuhorized(true);
+      } else {
+        console.log("Нет доступа к профилю");
+      }
+    };
+    if (!authorized) {
+      tryData();
+    }
+  }, []);
 
-          fetchData();
-   const handleAddProduct = () => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/getdata");
+      const result = await response.json();
+      setProducts(result);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  fetchData();
+  const handleAddProduct = () => {
     const priceNumber = parseFloat(price);
-    
+
     if (isNaN(priceNumber)) {
       alert("Пожалуйста, введите корректную цену.");
       return;
     }
-    
+
     const newProduct: IProduct = {
       title,
       description,
       price: priceNumber,
     };
     // const response = await fetch("http://localhost:5000/api/data");
-    let response = fetch('http://localhost:5000/data', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json; charset=utf-8'},
-      body: JSON.stringify(newProduct)
+    let response = fetch("http://localhost:5000/data", {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(newProduct),
     })
-    .then(response => response.json())
-    .catch(error => console.log(error));
+      .then((response) => response.json())
+      .catch((error) => console.log(error));
     response;
 
-    setTitle('');
-    setDescription('');
-    setPrice('');
+    setTitle("");
+    setDescription("");
+    setPrice("");
     setIsModalOpen(false);
-return;
+    return;
 
-    setProducts  ([...products, newProduct]);
+    setProducts([...products, newProduct]);
   };
-  
 
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Список товаров</h1>
-      <Button size="medium" color="primary" title="Добавить товар" 
-        ronClick={() => setIsModalOpen(true)} />
+      {authorized && (
+        <>
+          <Button
+            size="medium"
+            color="primary"
+            title="Добавить товар"
+            ronClick={() => setIsModalOpen(true)}
+          />
+        </>
+      )}
 
       {isModalOpen && (
         <div className="fixed inset-0 flex justify-center items-center">
@@ -94,16 +116,16 @@ return;
               ronChange={(e) => setPrice(e.target.value)}
             />
             <Button
-              size="medium" 
-              color="succes" 
-              title="Добавить" 
+              size="medium"
+              color="succes"
+              title="Добавить"
               ronClick={handleAddProduct}
             />
-            <Button 
-              size="medium" 
-              color="secondary" 
-              title="Закрыть" 
-              ronClick={() => setIsModalOpen(false)} 
+            <Button
+              size="medium"
+              color="secondary"
+              title="Закрыть"
+              ronClick={() => setIsModalOpen(false)}
             />
           </div>
         </div>
